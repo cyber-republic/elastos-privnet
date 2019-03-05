@@ -172,11 +172,6 @@ services:
       dockerfile: Dockerfile-peer-1
     ports:
       - 38080:8080 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:38080/version"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
     networks:
       - hive
     tty: true
@@ -189,11 +184,6 @@ services:
       dockerfile: Dockerfile-peer-2
     ports:
       - 48080:8080
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:48080/version"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
     networks:
       - hive
     tty: true
@@ -209,11 +199,6 @@ services:
       dockerfile: Dockerfile-master
     ports:
       - 9094-9096:9094-9096
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9094/version"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
     networks:
       - hive
     tty: true
@@ -230,11 +215,6 @@ services:
       dockerfile: Dockerfile-slave
     ports:
       - 49094-49096:9094-9096
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:49094/version"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
     networks:
       - hive
     tty: true
