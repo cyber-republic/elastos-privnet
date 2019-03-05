@@ -35,6 +35,24 @@ services:
       - blockchain
     tty: true
 
+  ela-sidechain-token:
+    container_name: ela-sidechain-token
+    image: ela-sidechain-token
+    depends_on:
+      - ela-mainchain
+    build:
+      context: ela-sidechain/token
+    ports:
+      - 20614-20618:20614-20618
+    healthcheck:
+      test: ["CMD", "curl", "-H", "Content-Type:application/json", "-H", "Accept:application/json", "--data", "'{\"method\":\"getbestblockhash\"}'", "http://localhost:20616"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - blockchain
+    tty: true
+
   ela-arbitrator-1:
     container_name: ela-arbitrator-1
     image: ela-arbitrator
@@ -153,7 +171,12 @@ services:
       context: ela-hive/hive-ipfs
       dockerfile: Dockerfile-peer-1
     ports:
-      - 38080:8080
+      - 38080:8080 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:38080/version"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - hive
     tty: true
@@ -166,6 +189,11 @@ services:
       dockerfile: Dockerfile-peer-2
     ports:
       - 48080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:48080/version"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - hive
     tty: true
@@ -181,6 +209,11 @@ services:
       dockerfile: Dockerfile-master
     ports:
       - 9094-9096:9094-9096
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9094/version"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - hive
     tty: true
@@ -197,6 +230,11 @@ services:
       dockerfile: Dockerfile-slave
     ports:
       - 49094-49096:9094-9096
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:49094/version"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - hive
     tty: true
