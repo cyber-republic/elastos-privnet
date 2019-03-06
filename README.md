@@ -41,16 +41,18 @@ These are located in the `wallets` folder:
 2. The following are the GIT SHAs we're using for each project:
     - Elastos.ELA: tag v0.2.2 3f1e5e6
     - Elastos.ELA.SideChain.ID: tag v0.0.2 07599ad
+    - Elastos.ELA.SideChain.Token: 
     - Elastos.ELA.Arbiter: tag v0.0.3 8970efe
     - Elastos.ORG.Wallet.Service: master 49dcbfa
     - Elastos.ORG.DID.Service: master 1ff8c00
-    - Elastos.ORG.API.Misc: master 5322f2e
+    - Elastos.ORG.API.Misc: master 5cb50ec
     - Elastos.NET.Hive.IPFS: dev-master 6a5e240
     - Elastos.NET.Hive.Cluster: dev-master 65033f0
     
 3. Check your ports, here are the following ports these containers expect available:
-    - Mainchain: 20333-20338
-    - DID Sidechain: 20604-20608
+    - Mainchain: 20333-20338 - [http://github.com/elastos/Elastos.ELA](http://github.com/elastos/Elastos.ELA)
+    - DID Sidechain: 20604-20608 - [http://github.com/elastos/Elastos.ELA.SideChain.DID](http://github.com/elastos/Elastos.ELA.SideChain.DID)
+    - Token Sidechain: 20614-20618 - [http://github.com/elastos/Elastos.ELA.SideChain.Token](http://github.com/elastos/Elastos.ELA.SideChain.Token)
     - Wallet Service: 8091 - [https://walletservice.readthedocs.io](https://walletservice.readthedocs.io)
     - DID Service: 8092 - [https://didservice.readthedocs.io](https://didservice.readthedocs.io)
     - Add-on API: 8093 - [https://github.com/elastos/Elastos.ORG.API.Misc](https://github.com/elastos/Elastos.ORG.API.Misc)
@@ -111,6 +113,7 @@ These are located in the `wallets` folder:
     ```
     
 9. Verify that cross-chain mainchain to sidechain transfers work
+    NOTE: Make sure to give at least 1-2 minutes(after docker container has started) before you call the following API and do not re-attempt the same command because it might fail otherwise.
     ```
     curl -X POST -H "Content-Type: application/json" -d '{"sender": [{"address": "EZngB4JXYAVhj8XZXR1HNWh2NkV5ttJtrE","privateKey": "2e900f236671edfd39a31e65a938491df5fc9a53b6b16e8ea0d697fe2f0a3d52"}],"receiver": [{"address": "EJWT3HbQWXNZk9gDwvGJwXdvv87qkdRkhE","amount": "1"}]}' localhost:8091/api/1/cross/m2d/transfer
     ```
@@ -174,7 +177,7 @@ These are located in the `wallets` folder:
     {"Keys":{}}
     ```
 
-13. Verify that your token sidechain is running correctly[Elastos.ELA.Sidechain.Token](http://github.com/elastos/Elastos.ELA.Sidechain.Token)
+13. Verify that your token sidechain is running correctly [Elastos.ELA.Sidechain.Token](http://github.com/elastos/Elastos.ELA.Sidechain.Token)
 
     Because "HttpRestPort" of token sidechain is not available, currently, it's not connected to the wallet service API so you cannot send any tokens from mainchain to token sidechain. All you can do is check that token sidechain is running properly. When the API layer for token sidechain will be available, this documentation will be updated.
     ```
@@ -195,6 +198,15 @@ See "Create DID" for how to create a DID, you will receive both a did and a priv
 ```
 GET /api/1/gen/did HTTP/1.1
 ```
+or
+```
+curl http://localhost:8092/api/1/gen/did
+```
+
+Should return something like
+```
+{"result":{"privateKey":"78F3F61DE57C2058FAB709641EAB8880F2312702896F5599FB4A714EBCF3CFFC","publicKey":"02BDA7DBA5E4E1E24245566AF75E34CC9933FAA99FFFC61081156CC05AE65422E2","publicAddr":"EJrijXpAJmFmn6Xbjdh8TZgAYKS1KsK26N","did":"iXxFsEtpt8krhcNbVL7gzRfNqrJdRT4bSw"},"status":200}
+```
 
 [https://didservice.readthedocs.io/en/latest/api_guide.html#create-did](https://didservice.readthedocs.io/en/latest/api_guide.html#create-did)
 
@@ -202,23 +214,24 @@ Then you can call `POST /api/1/setDidInfo` to store data to this DID. There are 
 is the private key of the wallet address that is paying for the store data transaction, you can use the ELA stored on the DID sidechain in `did-sidechain-preloaded.json`
 for this.
 
+You can put the following in a file. Make sure to change the privateKeys on this file to your own configuration.
 ```
 {
-  "privateKey":"C740869D015E674362B1F441E3EDBE1CBCF4FE8B709AA1A77E5CCA2C92BAF99D", 
-  "settings":{
-      "privateKey":"E763239857B390502289CF75FF06EEEDC3252A302C50E1CBB7E5FAC8A703486F",
-      "info":{
-                  "Tag":"DID Property",
-                  "Ver":"1.0",
-                  "Status":1,
-                  "Properties": [
-                      {
-                          "Key":"clark",
-                          "Value":"hello,world",
-                          "Status": 1
-                      }
-                  ]
-      }
+  "privatekey": "acf6ee13a2256f60f597f55bdd17d0ee772014db7233b50543bebdd1faf9a0da",
+  "settings": {
+    "privatekey": "78F3F61DE57C2058FAB709641EAB8880F2312702896F5599FB4A714EBCF3CFFC",
+    "info": {
+      "Tag": "DID Property",
+      "Ver": "1.0",
+      "Status": 1,
+      "Properties": [
+        {
+          "Key": "clark",
+          "Value": "hello,world",
+          "Status": 1
+        }
+      ]
+    }
   }
 }
 ```
@@ -226,6 +239,16 @@ for this.
 The inner settings struct is the actual DID to modify, so you will use the private key from `/api/1/gen/did` here to specify that DID.
 
 There is a cost of 10,000 SELA per 1kb on this privatenet, actual cost for the mainnet is not finalized.   
+
+And when you want to send a request to post the above file to the DID sidechain with the key "clark" and value "hello,world", do the following(Save the above excerpt into a file named "action_storeinfoon_didchain.json):
+```
+curl -H "Content-type: application/json" -d @action_storeinfoon_didchain.json http://localhost:8092/api/1/setDidInfo
+```
+
+Should return something like
+```
+{"result":"e2fe03663dafa8898d021ba4b80822cbd01279a9d1611cb81531d11407a326bd","status":200}
+```
 
 ### Retrieving the DID info must be on the Misc.API - port 8093
 
@@ -235,9 +258,11 @@ The API call should be `http://localhost:8093/api/1/did/{did}/{key}`
 
 For example if you stored the property key "clark" above, and assuming the did was `iWNFAVtCuyNSNqHbJRQ3PVKgokCWLyVYHe`, then calling
 
-`http://localhost:8093/api/1/did/iWNFAVtCuyNSNqHbJRQ3PVKgokCWLyVYHe/clark`
+`curl http://localhost:8093/api/1/did/iWNFAVtCuyNSNqHbJRQ3PVKgokCWLyVYHe/clark`
 
 Would return the value `"hello,world"`.
+
+NOTE: This API is very unstable at the moment so things might not work as expected. This will be fixed in the future.
     
 
 ## Elastos Hive - IPFS Storage

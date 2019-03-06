@@ -29,7 +29,7 @@ while ! mysql -h ela-mysql -P 3306 -u root --password="12345678" -e "show databa
 done
 
 # Run the SQL
-mysql -h ela-mysql -P 3306 -u root --password="12345678" -e "CREATE DATABASE chain_did"
+mysql -h ela-mysql -P 3306 -u root --password="12345678" -e "CREATE DATABASE IF NOT EXISTS chain_did"
 mysql -h ela-mysql -P 3306 -u root --password="12345678" -e "GRANT ALL PRIVILEGES ON chain_did.* TO 'elastos'@'%'"
 mysql -h ela-mysql -P 3306 -u root --password="12345678" -D chain_did < ./sql-init/global_setting.sql
 mysql -h ela-mysql -P 3306 -u elastos --password="12345678" -D chain_did < ./sql-init/chain_chain_block_header.sql
