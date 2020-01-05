@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath --verbose
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: privnet-sidechain-token-node
+  name: privnet-sidechain-token-node
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: privnet-sidechain-token-node
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: privnet-sidechain-token-node
+    spec:
+      containers:
+      - image: cyberrepublic/elastos-sidechain-token-node:privnet-v0.6
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -H
+            - '''Content-Type:application/json'''
+            - -H
+            - '''Accept:application/json'''
+            - --data
+            - '''{"method":"getbestblockhash"}'''
+            - http://localhost:40113
+          failureThreshold: 5
+          periodSeconds: 30
+          timeoutSeconds: 120
+        name: privnet-sidechain-token-node
+        ports:
+        - containerPort: 20614
+        - containerPort: 20615
+        - containerPort: 20616
+        - containerPort: 20617
+        - containerPort: 20618
+        resources: {}
+        tty: true
+        volumeMounts:
+        - mountPath: /token/elastos_token
+          name: privnet-sidechain-token-node-hostpath0
+        - mountPath: /token/config.json
+          name: privnet-sidechain-token-node-hostpath1
+      restartPolicy: Always
+      volumes:
+      - hostPath:
+          path: /home/kpachhai/.volumes/elastos-privnet/token-node
+        name: privnet-sidechain-token-node-hostpath0
+      - hostPath:
+          path: /home/kpachhai/dev/src/github.com/tuum-tech/elastos-privnet/blockchain/ela-sidechain/token/token-node/config.json
+        name: privnet-sidechain-token-node-hostpath1
+status: {}
