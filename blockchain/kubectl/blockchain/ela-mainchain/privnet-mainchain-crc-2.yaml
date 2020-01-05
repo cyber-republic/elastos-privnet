@@ -1,3 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath --verbose
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: privnet-mainchain-crc-2
+  name: privnet-mainchain-crc-2
+spec:
+  ports:
+  - name: "10211"
+    port: 10211
+    targetPort: 20333
+  - name: "10212"
+    port: 10212
+    targetPort: 20334
+  - name: "10213"
+    port: 10213
+    targetPort: 20335
+  - name: "10214"
+    port: 10214
+    targetPort: 20336
+  - name: "10215"
+    port: 10215
+    targetPort: 20337
+  - name: "10216"
+    port: 10216
+    targetPort: 20338
+  - name: "10217"
+    port: 10217
+    targetPort: 20339
+  selector:
+    io.kompose.service: privnet-mainchain-crc-2
+  type: NodePort
+status:
+  loadBalancer: {}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:

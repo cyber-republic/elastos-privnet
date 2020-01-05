@@ -1,3 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath --verbose
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: privnet-sidechain-did-node
+  name: privnet-sidechain-did-node
+spec:
+  ports:
+  - name: "30111"
+    port: 30111
+    targetPort: 20604
+  - name: "30112"
+    port: 30112
+    targetPort: 20605
+  - name: "30113"
+    port: 30113
+    targetPort: 20606
+  - name: "30114"
+    port: 30114
+    targetPort: 20607
+  - name: "30115"
+    port: 30115
+    targetPort: 20608
+  selector:
+    io.kompose.service: privnet-sidechain-did-node
+  type: NodePort
+status:
+  loadBalancer: {}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:

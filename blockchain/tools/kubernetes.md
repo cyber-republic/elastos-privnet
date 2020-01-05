@@ -24,8 +24,7 @@ for i in $(ls | grep .yaml); do echo $i; sed -i 's#extensions/v1beta1#apps/v1#g'
 ```
 - Fix any issues and run for real:
 ```
-kubectl create -f privnet-blockchain-namespace.yaml
-kubectl apply -f .
+kubectl apply -R -f blockchain
 ```
 - List the services:
 ```
@@ -34,13 +33,13 @@ kubectl get svc
 ```
 - Delete the pods:
 ```
-kubectl -n default delete pod,svc --all
-minikube stop
+kubectl -n blockchain delete pod,svc --all
+minikube_stop
 minikube delete
 ```
 
 - Other info:
 ```
-kubectl -n default get deployment
+kubectl -n blockchain get deployment
 kubectl -n default get pods
 ```

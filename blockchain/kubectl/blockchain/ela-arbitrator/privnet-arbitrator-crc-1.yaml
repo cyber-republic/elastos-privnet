@@ -1,3 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath --verbose
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: privnet-arbitrator-crc-1
+  name: privnet-arbitrator-crc-1
+spec:
+  ports:
+  - name: "50114"
+    port: 50114
+    targetPort: 20534
+  - name: "50115"
+    port: 50115
+    targetPort: 20535
+  - name: "50116"
+    port: 50116
+    targetPort: 20536
+  - name: "50117"
+    port: 50117
+    targetPort: 20537
+  - name: "50118"
+    port: 50118
+    targetPort: 20538
+  selector:
+    io.kompose.service: privnet-arbitrator-crc-1
+  type: NodePort
+status:
+  loadBalancer: {}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:

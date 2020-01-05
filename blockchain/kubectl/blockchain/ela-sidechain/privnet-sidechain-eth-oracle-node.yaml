@@ -1,3 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --volumes hostPath --verbose
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: privnet-sidechain-eth-oracle-node
+  name: privnet-sidechain-eth-oracle-node
+spec:
+  ports:
+  - name: "60114"
+    port: 60114
+    targetPort: 20632
+  selector:
+    io.kompose.service: privnet-sidechain-eth-oracle-node
+  type: NodePort
+status:
+  loadBalancer: {}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
