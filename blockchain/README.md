@@ -1202,7 +1202,7 @@ Prerequisites: Install kubernetes and minikube
 cd kubectl;
 sudo minikube start;
 sudo sudo chown -R $USER $HOME/.kube $HOME/.minikube;
-kubectl apply -R -f blockchain;
+kubectl apply -R -f .;
 ```
 NOTE: Kubernetes runs containers in a cluster but each "app"(eg. mainchain node, did sidechain node, etc) run in different IP addresses and different ports. View the services to check out their IPs and ports they run on.
 

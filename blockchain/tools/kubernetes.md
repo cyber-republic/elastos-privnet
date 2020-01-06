@@ -27,11 +27,11 @@ for i in $(ls | grep .yaml); do echo $i; sed -i 's#extensions/v1beta1#apps/v1#g'
 ```
 - Fix any issues and run for real:
 ```
-kubectl apply -R -f blockchain
+kubectl apply -R -f .
 ```
 - Change something on all the files
 ```
-for i in $(find . -type f); do echo $i; sed -i 's#this#that#g' $i; done
+for i in $(find . -type f); do echo $i; sed -i 's#io.kompose.service#app#g' $i; done
 ```
 
 - List the services:
