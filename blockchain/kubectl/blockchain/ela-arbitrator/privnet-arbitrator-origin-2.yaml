@@ -10,20 +10,20 @@ metadata:
   name: privnet-arbitrator-origin-2
 spec:
   ports:
-  - name: "50614"
-    port: 50614
+  - name: "20534"
+    port: 20534
     targetPort: 20534
-  - name: "50615"
-    port: 50615
+  - name: "20535"
+    port: 20535
     targetPort: 20535
-  - name: "50616"
-    port: 50616
+  - name: "20536"
+    port: 20536
     targetPort: 20536
-  - name: "50617"
-    port: 50617
+  - name: "20537"
+    port: 20537
     targetPort: 20537
-  - name: "50618"
-    port: 50618
+  - name: "20538"
+    port: 20538
     targetPort: 20538
   selector:
     io.kompose.service: privnet-arbitrator-origin-2

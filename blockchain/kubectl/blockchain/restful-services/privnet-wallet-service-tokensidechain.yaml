@@ -10,8 +10,8 @@ metadata:
   name: privnet-wallet-service-tokensidechain
 spec:
   ports:
-  - name: "8093"
-    port: 8093
+  - name: "8080"
+    port: 8080
     targetPort: 8080
   selector:
     io.kompose.service: privnet-wallet-service-tokensidechain

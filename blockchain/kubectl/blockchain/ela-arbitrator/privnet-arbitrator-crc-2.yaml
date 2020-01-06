@@ -10,20 +10,20 @@ metadata:
   name: privnet-arbitrator-crc-2
 spec:
   ports:
-  - name: "50214"
-    port: 50214
+  - name: "20534"
+    port: 20534
     targetPort: 20534
-  - name: "50215"
-    port: 50215
+  - name: "20535"
+    port: 20535
     targetPort: 20535
-  - name: "50216"
-    port: 50216
+  - name: "20536"
+    port: 20536
     targetPort: 20536
-  - name: "50217"
-    port: 50217
+  - name: "20537"
+    port: 20537
     targetPort: 20537
-  - name: "50218"
-    port: 50218
+  - name: "20538"
+    port: 20538
     targetPort: 20538
   selector:
     io.kompose.service: privnet-arbitrator-crc-2

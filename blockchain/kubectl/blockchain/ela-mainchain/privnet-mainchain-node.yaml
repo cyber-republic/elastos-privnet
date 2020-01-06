@@ -10,26 +10,26 @@ metadata:
   name: privnet-mainchain-node
 spec:
   ports:
-  - name: "10011"
-    port: 10011
+  - name: "20333"
+    port: 20333
     targetPort: 20333
-  - name: "10012"
-    port: 10012
+  - name: "20334"
+    port: 20334
     targetPort: 20334
-  - name: "10013"
-    port: 10013
+  - name: "20335"
+    port: 20335
     targetPort: 20335
-  - name: "10014"
-    port: 10014
+  - name: "20336"
+    port: 20336
     targetPort: 20336
-  - name: "10015"
-    port: 10015
+  - name: "20337"
+    port: 20337
     targetPort: 20337
-  - name: "10016"
-    port: 10016
+  - name: "20338"
+    port: 20338
     targetPort: 20338
-  - name: "10017"
-    port: 10017
+  - name: "20339"
+    port: 20339
     targetPort: 20339
   selector:
     io.kompose.service: privnet-mainchain-node

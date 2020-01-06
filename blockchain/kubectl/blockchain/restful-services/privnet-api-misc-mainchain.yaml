@@ -10,8 +10,8 @@ metadata:
   name: privnet-api-misc-mainchain
 spec:
   ports:
-  - name: "9091"
-    port: 9091
+  - name: "8080"
+    port: 8080
     targetPort: 8080
   selector:
     io.kompose.service: privnet-api-misc-mainchain

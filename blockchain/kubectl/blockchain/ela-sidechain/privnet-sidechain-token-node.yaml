@@ -10,20 +10,20 @@ metadata:
   name: privnet-sidechain-token-node
 spec:
   ports:
-  - name: "40111"
-    port: 40111
+  - name: "20614"
+    port: 20614
     targetPort: 20614
-  - name: "40112"
-    port: 40112
+  - name: "20615"
+    port: 20615
     targetPort: 20615
-  - name: "40113"
-    port: 40113
+  - name: "20616"
+    port: 20616
     targetPort: 20616
-  - name: "40114"
-    port: 40114
+  - name: "20617"
+    port: 20617
     targetPort: 20617
-  - name: "40115"
-    port: 40115
+  - name: "20618"
+    port: 20618
     targetPort: 20618
   selector:
     io.kompose.service: privnet-sidechain-token-node

@@ -10,8 +10,8 @@ metadata:
   name: privnet-wallet-service
 spec:
   ports:
-  - name: "8091"
-    port: 8091
+  - name: "8080"
+    port: 8080
     targetPort: 8080
   selector:
     io.kompose.service: privnet-wallet-service

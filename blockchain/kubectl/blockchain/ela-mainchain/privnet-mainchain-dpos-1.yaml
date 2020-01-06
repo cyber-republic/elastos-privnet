@@ -10,26 +10,26 @@ metadata:
   name: privnet-mainchain-dpos-1
 spec:
   ports:
-  - name: "10511"
-    port: 10511
+  - name: "20333"
+    port: 20333
     targetPort: 20333
-  - name: "10512"
-    port: 10512
+  - name: "20334"
+    port: 20334
     targetPort: 20334
-  - name: "10513"
-    port: 10513
+  - name: "20335"
+    port: 20335
     targetPort: 20335
-  - name: "10514"
-    port: 10514
+  - name: "20336"
+    port: 20336
     targetPort: 20336
-  - name: "10515"
-    port: 10515
+  - name: "20337"
+    port: 20337
     targetPort: 20337
-  - name: "10516"
-    port: 10516
+  - name: "20338"
+    port: 20338
     targetPort: 20338
-  - name: "10517"
-    port: 10517
+  - name: "20339"
+    port: 20339
     targetPort: 20339
   selector:
     io.kompose.service: privnet-mainchain-dpos-1

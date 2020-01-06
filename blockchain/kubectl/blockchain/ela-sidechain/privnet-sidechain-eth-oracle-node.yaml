@@ -10,8 +10,8 @@ metadata:
   name: privnet-sidechain-eth-oracle-node
 spec:
   ports:
-  - name: "60114"
-    port: 60114
+  - name: "20632"
+    port: 20632
     targetPort: 20632
   selector:
     io.kompose.service: privnet-sidechain-eth-oracle-node

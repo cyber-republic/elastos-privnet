@@ -29,17 +29,17 @@ kubectl apply -R -f blockchain
 - List the services:
 ```
 minikube service list;
-kubectl get svc
 ```
 - Delete the pods:
 ```
-kubectl -n blockchain delete pod,svc --all
+kubectl -n default delete pod,svc --all
 minikube_stop
 minikube delete
 ```
 
 - Other info:
 ```
-kubectl -n blockchain get deployment
+kubectl -n default get deployment
 kubectl -n default get pods
+kubectl get svc
 ```

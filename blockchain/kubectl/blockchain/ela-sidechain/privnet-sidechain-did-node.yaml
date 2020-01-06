@@ -10,20 +10,20 @@ metadata:
   name: privnet-sidechain-did-node
 spec:
   ports:
-  - name: "30111"
-    port: 30111
+  - name: "20604"
+    port: 20604
     targetPort: 20604
-  - name: "30112"
-    port: 30112
+  - name: "20605"
+    port: 20605
     targetPort: 20605
-  - name: "30113"
-    port: 30113
+  - name: "20606"
+    port: 20606
     targetPort: 20606
-  - name: "30114"
-    port: 30114
+  - name: "20607"
+    port: 20607
     targetPort: 20607
-  - name: "30115"
-    port: 30115
+  - name: "20608"
+    port: 20608
     targetPort: 20608
   selector:
     io.kompose.service: privnet-sidechain-did-node

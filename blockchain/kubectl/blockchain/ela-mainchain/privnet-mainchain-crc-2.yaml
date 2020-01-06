@@ -10,26 +10,26 @@ metadata:
   name: privnet-mainchain-crc-2
 spec:
   ports:
-  - name: "10211"
-    port: 10211
+  - name: "20333"
+    port: 20333
     targetPort: 20333
-  - name: "10212"
-    port: 10212
+  - name: "20334"
+    port: 20334
     targetPort: 20334
-  - name: "10213"
-    port: 10213
+  - name: "20335"
+    port: 20335
     targetPort: 20335
-  - name: "10214"
-    port: 10214
+  - name: "20336"
+    port: 20336
     targetPort: 20336
-  - name: "10215"
-    port: 10215
+  - name: "20337"
+    port: 20337
     targetPort: 20337
-  - name: "10216"
-    port: 10216
+  - name: "20338"
+    port: 20338
     targetPort: 20338
-  - name: "10217"
-    port: 10217
+  - name: "20339"
+    port: 20339
     targetPort: 20339
   selector:
     io.kompose.service: privnet-mainchain-crc-2
