@@ -1,5 +1,8 @@
+Cheatsheet: https://kubernetes.io/docs/reference/kubectl/cheatsheet
 Install Minikube: https://kubernetes.io/docs/tasks/tools/install-minikube/
 Learn more about Minikube: https://kubernetes.io/docs/setup/learning-environment/minikube/
+Translate docker-compose to kubernetes: https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/
+
 
 
 ### Convert docker-compose.yml to kubernetes
