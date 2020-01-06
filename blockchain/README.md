@@ -1215,6 +1215,7 @@ kubectl -n default get pods;
 kubectl get svc;
 kubectl logs -f pod_name;
 kubectl describe pod pod_name;
+kubectl exec -it pod_name sh
 ```
 
 How to stop kubernetest cluster:

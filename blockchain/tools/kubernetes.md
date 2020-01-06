@@ -29,6 +29,11 @@ for i in $(ls | grep .yaml); do echo $i; sed -i 's#extensions/v1beta1#apps/v1#g'
 ```
 kubectl apply -R -f blockchain
 ```
+- Change something on all the files
+```
+for i in $(find . -type f); do echo $i; sed -i 's#this#that#g' $i; done
+```
+
 - List the services:
 ```
 minikube service list;
