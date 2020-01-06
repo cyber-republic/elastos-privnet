@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-mysql
+    app: privnet-mysql
   name: privnet-mysql
 spec:
   ports:
@@ -14,7 +14,7 @@ spec:
     port: 3306
     targetPort: 3306
   selector:
-    io.kompose.service: privnet-mysql
+    app: privnet-mysql
   type: NodePort
 status:
   loadBalancer: {}
@@ -27,7 +27,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-mysql
+    app: privnet-mysql
   name: privnet-mysql
 spec:
   replicas: 1
@@ -35,12 +35,12 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      io.kompose.service: privnet-mysql
+      app: privnet-mysql
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: privnet-mysql
+        app: privnet-mysql
     spec:
       containers:
       - env:
@@ -61,7 +61,7 @@ spec:
             - -h
             - localhost
             - -P
-            - "3307"
+            - "3306"
             - -u
             - elastos
             - -p12345678

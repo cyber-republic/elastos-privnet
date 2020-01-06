@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-service
+    app: privnet-sidechain-service
   name: privnet-sidechain-service
 spec:
   ports:
@@ -14,7 +14,7 @@ spec:
     port: 8080
     targetPort: 8080
   selector:
-    io.kompose.service: privnet-sidechain-service
+    app: privnet-sidechain-service
   type: NodePort
 status:
   loadBalancer: {}
@@ -27,7 +27,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-service
+    app: privnet-sidechain-service
   name: privnet-sidechain-service
 spec:
   replicas: 1
@@ -35,12 +35,12 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      io.kompose.service: privnet-sidechain-service
+      app: privnet-sidechain-service
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: privnet-sidechain-service
+        app: privnet-sidechain-service
     spec:
       containers:
       - image: cyberrepublic/elastos-sidechain-service:privnet-v0.6
@@ -49,7 +49,7 @@ spec:
             command:
             - curl
             - -f
-            - http://localhost:8092/api/1/currHeight
+            - http://localhost:8080/api/1/currHeight
           failureThreshold: 5
           periodSeconds: 30
           timeoutSeconds: 120

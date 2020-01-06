@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-mainchain-node
+    app: privnet-mainchain-node
   name: privnet-mainchain-node
 spec:
   ports:
@@ -32,7 +32,7 @@ spec:
     port: 20339
     targetPort: 20339
   selector:
-    io.kompose.service: privnet-mainchain-node
+    app: privnet-mainchain-node
   type: NodePort
 status:
   loadBalancer: {}
@@ -45,7 +45,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-mainchain-node
+    app: privnet-mainchain-node
   name: privnet-mainchain-node
 spec:
   replicas: 1
@@ -53,12 +53,12 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      io.kompose.service: privnet-mainchain-node
+      app: privnet-mainchain-node
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: privnet-mainchain-node
+        app: privnet-mainchain-node
     spec:
       containers:
       - image: cyberrepublic/elastos-mainchain-node:privnet-v0.6
@@ -72,7 +72,7 @@ spec:
             - '''Accept:application/json'''
             - --data
             - '''{"method":"getbestblockhash"}'''
-            - http://localhost:10014
+            - http://localhost:20336
           failureThreshold: 5
           periodSeconds: 30
           timeoutSeconds: 120

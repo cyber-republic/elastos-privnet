@@ -1208,8 +1208,18 @@ NOTE: Kubernetes runs containers in a cluster but each "app"(eg. mainchain node,
 
 Check info about your kubernetes cluster:
 ```
-kubectl -n default get deployment
-kubectl -n default get pods
-kubectl get svc
-kubectl logs -f pod_name
+minikube service list;
+kubectl describe services service_name;
+kubectl -n default get deployment;
+kubectl -n default get pods;
+kubectl get svc;
+kubectl logs -f pod_name;
+kubectl describe pod pod_name;
+```
+
+How to stop kubernetest cluster:
+```
+kubectl -n default delete pod,svc --all;
+mnikube stop
+minikube delete
 ```

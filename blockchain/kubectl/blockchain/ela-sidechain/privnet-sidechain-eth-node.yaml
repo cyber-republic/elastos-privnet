@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-eth-node
+    app: privnet-sidechain-eth-node
   name: privnet-sidechain-eth-node
 spec:
   ports:
@@ -20,7 +20,7 @@ spec:
     port: 20638
     targetPort: 20638
   selector:
-    io.kompose.service: privnet-sidechain-eth-node
+    app: privnet-sidechain-eth-node
   type: NodePort
 status:
   loadBalancer: {}
@@ -33,7 +33,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-eth-node
+    app: privnet-sidechain-eth-node
   name: privnet-sidechain-eth-node
 spec:
   replicas: 1
@@ -41,12 +41,12 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      io.kompose.service: privnet-sidechain-eth-node
+      app: privnet-sidechain-eth-node
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: privnet-sidechain-eth-node
+        app: privnet-sidechain-eth-node
     spec:
       containers:
       - command:
@@ -68,7 +68,7 @@ spec:
             - '''Accept:application/json'''
             - --data
             - '''{"jsonrpc":"2.0","method":"eth_blockNumber","params":[], "id":1}'''
-            - http://localhost:60111
+            - http://localhost:20636
           failureThreshold: 5
           periodSeconds: 30
           timeoutSeconds: 120

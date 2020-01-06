@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-eth-oracle-node
+    app: privnet-sidechain-eth-oracle-node
   name: privnet-sidechain-eth-oracle-node
 spec:
   ports:
@@ -14,7 +14,7 @@ spec:
     port: 20632
     targetPort: 20632
   selector:
-    io.kompose.service: privnet-sidechain-eth-oracle-node
+    app: privnet-sidechain-eth-oracle-node
   type: NodePort
 status:
   loadBalancer: {}
@@ -27,7 +27,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-eth-oracle-node
+    app: privnet-sidechain-eth-oracle-node
   name: privnet-sidechain-eth-oracle-node
 spec:
   replicas: 1
@@ -35,12 +35,12 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      io.kompose.service: privnet-sidechain-eth-oracle-node
+      app: privnet-sidechain-eth-oracle-node
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: privnet-sidechain-eth-oracle-node
+        app: privnet-sidechain-eth-oracle-node
     spec:
       containers:
       - image: cyberrepublic/elastos-sidechain-eth-oracle:privnet-v0.6

@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-token-node
+    app: privnet-sidechain-token-node
   name: privnet-sidechain-token-node
 spec:
   ports:
@@ -26,7 +26,7 @@ spec:
     port: 20618
     targetPort: 20618
   selector:
-    io.kompose.service: privnet-sidechain-token-node
+    app: privnet-sidechain-token-node
   type: NodePort
 status:
   loadBalancer: {}
@@ -39,7 +39,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: privnet-sidechain-token-node
+    app: privnet-sidechain-token-node
   name: privnet-sidechain-token-node
 spec:
   replicas: 1
@@ -47,12 +47,12 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      io.kompose.service: privnet-sidechain-token-node
+      app: privnet-sidechain-token-node
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: privnet-sidechain-token-node
+        app: privnet-sidechain-token-node
     spec:
       containers:
       - image: cyberrepublic/elastos-sidechain-token-node:privnet-v0.6
@@ -66,7 +66,7 @@ spec:
             - '''Accept:application/json'''
             - --data
             - '''{"method":"getbestblockhash"}'''
-            - http://localhost:40113
+            - http://localhost:20616
           failureThreshold: 5
           periodSeconds: 30
           timeoutSeconds: 120
